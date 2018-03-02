@@ -18,8 +18,8 @@ fc7 = AlexNet(resized, feature_extract=True)
 # the traffic signs. Assign the result of the softmax activation to `probs` below.
 # HINT: Look at the final layer definition in alexnet.py to get an idea of what this
 # should look like.
-shape = (fc7.get_shape().as_list()[-1], nb_classes)  # use this shape for the weight matrix
-probs = ...
+shape = [fc7.get_shape().as_list()[-1], nb_classes] # use this shape for the weight matrix
+probs = tf.nn.softmax(tf.matmul(fc7, tf.Variable(tf.truncated_normal(shape))) + tf.Variable(tf.zeros(nb_classes)) )
 
 init = tf.global_variables_initializer()
 sess = tf.Session()
